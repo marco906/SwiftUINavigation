@@ -1,7 +1,7 @@
 # SwiftUINavigation
 
 ## Overview
-This is an open-source library to use with SwiftUI. It allows you perform navigation actions easily.
+This is an open-source library to use with SwiftUI. It helps you to do navigation actions with your SwiftUI app. 
 
 - Define your navigation routes and make your view conform to NavigationScreen for easy routing
 - Stack actions: push, pop, popToRoot
@@ -22,7 +22,7 @@ You can find the full demo example that you can build and run in the folder Swif
 
 ### Define your routes
 - Create an enum for your app routes and make it conform to the `Routable` protocol.
-- Define the SwiftUI Views that the routes should navigate to.
+- Define the destination view that the route should navigate to in the property `view`.
 
 ```swift
 import SwiftUINavigation
