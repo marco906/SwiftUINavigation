@@ -4,20 +4,26 @@
 import PackageDescription
 
 let package = Package(
-    name: "SwiftNavigation",
+    name: "SwiftUINavigation",
+    platforms: [
+        .iOS(.v16),
+        .macOS(.v13),
+        .tvOS(.v16),
+        .watchOS(.v9)
+    ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "SwiftNavigation",
-            targets: ["SwiftNavigation"]),
+            name: "SwiftUINavigation",
+            targets: ["SwiftUINavigation"]),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "SwiftNavigation"),
+            name: "SwiftUINavigation"),
         .testTarget(
-            name: "SwiftNavigationTests",
-            dependencies: ["SwiftNavigation"]),
+            name: "SwiftUINavigationTests",
+            dependencies: ["SwiftUINavigation"]),
     ]
 )
