@@ -116,50 +116,54 @@ struct DetailView: View, NavigationScreen {
 
 ```
 
-### Perform navigation action
+### Perform navigation actions
 - Inside a View that conforms to `NavigationScreen` you can perform navigation actions as follows
 
-push, pop, popToRoot
+Push, pop, popToRoot
 
 ```swift
 Button("Root") {
-	popToRoot()
+    popToRoot()
 }
+
 Button("Previous") {
-	pop()
+    pop()
 }
+
 Button("Next") {
-	push(AppRoute.demo(1))
+    push(AppRoute.demo(1))
 }
 
 ```
 
-push sheets, fullscreens, popOvers
+Push sheets, fullscreens, popOvers
 
 ```swift
 Button("Sheet") {
-	pushSheet(AppRoute.demo(1))
+    pushSheet(AppRoute.demo(1))
 }
+
 Button("Fullscreen") {
-	pushFullscreen(AppRoute.demo(1))
+    pushFullscreen(AppRoute.demo(1))
 }
+
 Button("Popover") {
-	pushPopover(AppRoute.demo(1))
+    pushPopover(AppRoute.demo(1))
 }
 
 ```
 
-alerts
+Alerts
 
 ```swift
 Button("Alert") {
-	let details = AlertDetails(
-		title: "Alert",
-		message: "This is an alert message",
-		onConfirm: {},
-		confirmationtitle: "Got it!"
-	)
-	pushAlert(details)
+    let details = AlertDetails(
+        title: "Alert",
+        message: "This is an alert message",
+        onConfirm: {},
+        confirmationtitle: "Got it!"
+    )
+    pushAlert(details)
 }
 
 ```
