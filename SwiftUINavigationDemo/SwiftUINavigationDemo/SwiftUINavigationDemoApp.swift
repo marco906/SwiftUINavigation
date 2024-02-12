@@ -76,7 +76,6 @@ struct DetailView: View, NavigationScreen {
                 Button("Next") {
                     push(AppRoute.demo(number + 1))
                 }
-
             }
             Text("Modals")
             HStack{

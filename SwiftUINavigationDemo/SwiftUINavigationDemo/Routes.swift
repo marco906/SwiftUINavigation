@@ -14,8 +14,7 @@ enum AppRoute: Routable {
     
     var id: String {
         switch self {
-        case let .demo(number):
-            "demo_\(number)"
+        case let .demo(number): "demo_\(number)"
         }
     }
     
@@ -23,8 +22,7 @@ enum AppRoute: Routable {
     @ViewBuilder
     var view: some View {
         switch self {
-        case let .demo(number):
-            DetailView(number: number)
+        case let .demo(number): DetailView(number: number)
         }
     }
 }
