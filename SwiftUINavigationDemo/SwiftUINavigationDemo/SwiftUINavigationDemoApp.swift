@@ -31,9 +31,11 @@ struct ContentView: View {
         .sheet(item: $modalNavigator.sheetDestination) { route in
             modalDestination(route)
         }
+        #if os(iOS)
         .fullScreenCover(item: $modalNavigator.fullScreenDestination) { route in
             modalDestination(route)
         }
+        #endif
         .alert(isPresented: $modalNavigator.showAlert, details: modalNavigator.alertDetails)
     }
     
@@ -63,50 +65,69 @@ struct DetailView: View, NavigationScreen {
     
     var number: Int
     
+    var isSheet: Bool {
+        #if os(macOS)
+            return false
+        #else
+            return isPresented
+        #endif
+    }
+    
     var body: some View {
         VStack(spacing: 20) {
             Text("Navigate")
-            HStack{
-                Button("Root") {
-                    popToRoot()
-                }
-                Button("Previous") {
-                    pop()
-                }
-                Button("Next") {
-                    push(AppRoute.demo(number + 1))
-                }
-            }
+            navigateButtons
+            
             Text("Modals")
-            HStack{
-                if isPresented {
-                    Button("Close") {
-                        closeAllModals()
-                        popToRoot()
-                    }
-                } else {
-                    Button("Sheet") {
-                        pushSheet(AppRoute.demo(1))
-                    }
-                    Button("Fullscreen") {
-                        pushFullscreen(AppRoute.demo(1))
-                    }
-                    Button("Alert") {
-                        let details = AlertDetails(
-                            title: "Alert",
-                            message: "This is an alert message",
-                            onConfirm: {},
-                            confirmationtitle: "Got it!"
-                        )
-                        pushAlert(details)
-                    }
-                }
-            }
+            modalButtons
         }
         .buttonStyle(.borderedProminent)
-        .navigationTitle(isPresented ? "Sheet \(number)" : "Page \(number)")
+        .navigationTitle(isSheet ? "Sheet \(number)" : "Page \(number)")
         .navigationDestination(for: AppRoute.self) { route in
             route.view
+        }
+    }
+    
+    var navigateButtons: some View {
+        HStack{
+            Button("Root") {
+                popToRoot()
+            }
+            Button("Previous") {
+                pop()
+            }
+            Button("Next") {
+                push(AppRoute.demo(number + 1))
+            }
+        }
+    }
+    
+    var modalButtons: some View {
+        HStack{
+            if isSheet {
+                Button("Close") {
+                    closeAllModals()
+                    popToRoot()
+                }
+            } else {
+                #if os(iOS)
+                Button("Sheet") {
+                    pushSheet(AppRoute.demo(1))
+                }
+                Button("Fullscreen") {
+                    pushFullscreen(AppRoute.demo(1))
+                }
+                #endif
+                Button("Alert") {
+                    let details = AlertDetails(
+                        title: "Alert",
+                        message: "This is an alert message",
+                        onConfirm: {},
+                        confirmationtitle: "Got it!"
+                    )
+                    pushAlert(details)
+                }
+            }
         }
     }
 }
