@@ -119,7 +119,7 @@ struct DetailView: View, NavigationScreen {
 ### Perform navigation actions
 - Inside a View that conforms to `NavigationScreen` you can perform navigation actions as follows
 
-Push, pop, popToRoot
+Push, pop, popToRoot from your navigation stack
 
 ```swift
 Button("Root") {
@@ -153,7 +153,7 @@ Button("Popover") {
 
 ```
 
-Alerts
+Configure and present Alerts
 
 ```swift
 Button("Alert") {
